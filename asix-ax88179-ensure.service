@@ -1,0 +1,15 @@
+[Unit]
+Description=Ensure ASIX AX88179B vendor driver is active
+After=local-fs.target systemd-udev-settle.service network-online.target
+Wants=systemd-udev-settle.service network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/etc/asix-ax88179/asix-ax88179-ensure.sh
+RemainAfterExit=yes
+Restart=on-failure
+RestartSec=60
+
+[Install]
+WantedBy=multi-user.target
+
